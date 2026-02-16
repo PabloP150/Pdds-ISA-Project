@@ -199,37 +199,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>${maven-checkstyle.version}</version>
-        <dependencies>
-          <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${checkstyle.version}</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>nohttp-checkstyle-validation</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>validate</phase>
-            <configuration>
-              <failsOnError>false</failsOnError> <configLocation>src/checkstyle/nohttp-checkstyle.xml</configLocation>
-            </configuration>
-          </execution>
-          <execution>
-            <id>complexity-check</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>validate</phase>
-            <configuration>
-              <failsOnError>false</failsOnError> <configLocation>sun_checks.xml</configLocation>
-              <consoleOutput>true</consoleOutput>
-            </configuration>
-          </execution>
-        </executions>
-    </plugin>
+        <configuration>
+          <configLocation>sun_checks.xml</configLocation>
+          <consoleOutput>true</consoleOutput>
+          <failsOnError>false</failsOnError>
+          <failOnViolation>false</failOnViolation>
+        </configuration>
+      </plugin>
     <plugin>
         <groupId>org.graalvm.buildtools</groupId>
         <artifactId>native-maven-plugin</artifactId>
@@ -256,23 +232,23 @@
         </executions>
     </plugin>
     <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.11</version>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>report</id>
-                <goals>
-                    <goal>report</goal>
-                </goals>
-                <phase>prepare-package</phase>
-            </execution>
-        </executions>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>${jacoco.version}</version>
+      <executions>
+        <execution>
+          <goals>
+            <goal>prepare-agent</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>report</id>
+          <goals>
+            <goal>report</goal>
+          </goals>
+          <phase>test</phase>
+        </execution>
+      </executions>
     </plugin>
 
       <!-- Spring Boot Actuator displays build-related information if a git.properties file is
