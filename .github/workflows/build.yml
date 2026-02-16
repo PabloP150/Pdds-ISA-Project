@@ -39,4 +39,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Necesario para que Sonar comente en PRs
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         # Se añade explícitamente la organización definida en tu pom.xml
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=PabloP150_Pdds-ISA-Project -Dsonar.organization=pablop150
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=PabloP150_Pdds-ISA-Project -Dsonar.organization=pablop150 -Dsonar.branch.name=main
