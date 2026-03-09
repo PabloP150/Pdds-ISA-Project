@@ -91,6 +91,8 @@ trivy fs --scanners vuln .
 
 **Total: 3 vulnerabilidades (2 HIGH + 1 LOW)**
 
+> **Nota sobre severidad:** El escáner Trivy no encontró vulnerabilidades de nivel CRITICAL en este proyecto, lo cual indica que las dependencias de Spring Boot 4.0.1 están en general bien mantenidas. Las 2 vulnerabilidades de nivel HIGH en `jackson-core` fueron tratadas como las vulnerabilidades prioritarias a remediar, ya que representan el mayor riesgo de seguridad encontrado (ataques DoS en producción).
+
 ### Descripción de las vulnerabilidades HIGH
 
 **CVE-2026-29062 — Denial of Service via JSON nesting**
