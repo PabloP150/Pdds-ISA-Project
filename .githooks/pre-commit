@@ -1,0 +1,49 @@
+#!/bin/sh
+# Pre-commit hook: blocks commits containing secrets or API keys
+# Delivery 3 - Security Hardening (DevSecOps)
+#
+# To activate: git config core.hooksPath .githooks
+
+echo "[security] Scanning for secrets and API keys..."
+
+# Patterns to detect
+PATTERNS="
+api_key\s*=\s*['\"][^'\"]{8,}['\"]
+apikey\s*=\s*['\"][^'\"]{8,}['\"]
+API_KEY\s*=\s*['\"][^'\"]{8,}['\"]
+secret\s*=\s*['\"][^'\"]{8,}['\"]
+SECRET\s*=\s*['\"][^'\"]{8,}['\"]
+password\s*=\s*['\"][^'\"]{4,}['\"]
+PASSWORD\s*=\s*['\"][^'\"]{4,}['\"]
+token\s*=\s*['\"][^'\"]{8,}['\"]
+TOKEN\s*=\s*['\"][^'\"]{8,}['\"]
+AKIA[0-9A-Z]{16}
+-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----
+ghp_[0-9a-zA-Z]{36}
+sk-[a-zA-Z0-9]{48}
+"
+
+FOUND=0
+
+for PATTERN in $PATTERNS; do
+  MATCHES=$(git diff --cached --unified=0 -- ':!.githooks' | grep "^+" | grep -vE "^\+\+\+" | grep -E "$PATTERN" 2>/dev/null)
+  if [ -n "$MATCHES" ]; then
+    echo ""
+    echo "[BLOCKED] Potential secret detected matching pattern: $PATTERN"
+    echo "$MATCHES"
+    FOUND=1
+  fi
+done
+
+if [ "$FOUND" -eq 1 ]; then
+  echo ""
+  echo "------------------------------------------------------"
+  echo " COMMIT BLOCKED: Secrets or API keys detected."
+  echo " Remove sensitive data before committing."
+  echo " Use environment variables or a secrets manager instead."
+  echo "------------------------------------------------------"
+  exit 1
+fi
+
+echo "[security] No secrets detected. Proceeding with commit."
+exit 0
