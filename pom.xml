@@ -26,6 +26,9 @@
     <webjars-bootstrap.version>5.3.8</webjars-bootstrap.version>
     <webjars-font-awesome.version>4.7.0</webjars-font-awesome.version>
 
+    <!-- Security fixes: patched versions from Trivy scan (delivery3) -->
+    <logback.version>1.5.25</logback.version>
+
     <checkstyle.version>12.1.2</checkstyle.version>
     <jacoco.version>0.8.14</jacoco.version>
     <libsass.version>0.3.4</libsass.version>
@@ -41,6 +44,17 @@
       <url>https://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Security fix: CVE-2026-29062, GHSA-72hv-8253-57qq (HIGH) - DoS via JSON nesting -->
+      <dependency>
+        <groupId>tools.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <!-- Spring and Spring Boot dependencies -->
