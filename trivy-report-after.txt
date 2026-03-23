@@ -1,0 +1,15 @@
+2026-03-08T20:21:07-06:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-03-08T20:21:09-06:00	INFO	Number of language-specific files	num=1
+2026-03-08T20:21:09-06:00	INFO	[pom] Detecting vulnerabilities...
+
+Report Summary
+
+┌─────────┬──────┬─────────────────┐
+│ Target  │ Type │ Vulnerabilities │
+├─────────┼──────┼─────────────────┤
+│ pom.xml │ pom  │        0        │
+└─────────┴──────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
