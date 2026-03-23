@@ -7,7 +7,8 @@ services:
       - SPRING_PROFILES_ACTIVE=mysql
       - MYSQL_URL=jdbc:mysql://mysql:3306/petclinic
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
   mysql:
     image: mysql:9.5
     ports:
@@ -20,6 +21,11 @@ services:
       - MYSQL_DATABASE=petclinic
     volumes:
       - "./conf.d:/etc/mysql/conf.d:ro"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   # postgres:
   #   image: postgres:18.1
   #   ports:
