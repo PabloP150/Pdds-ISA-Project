@@ -155,4 +155,4 @@ Benchmarks: [Before](docs/delivery5/benchmark-before.txt) · [After](docs/delive
 | Pablo Pineda |
 | Christian Martinez |
 
-Curso: **PDDS — Ingenieria de Software Aplicada (ISA)**
+Curso: **PDDS — Ingenieria de Software Avanzada (ISA)**
