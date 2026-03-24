@@ -1,0 +1,49 @@
+=== BENCHMARK AFTER (all optimizations) — Tue Mar 24 10:27:50 CST 2026 ===
+
+--- Endpoint: GET /owners?lastName= (buscar todos los owners) ---
+Request 1: 0.132063s
+Request 2: 0.010897s
+Request 3: 0.010435s
+Request 4: 0.010627s
+Request 5: 0.010634s
+Request 6: 0.009475s
+Request 7: 0.009963s
+Request 8: 0.008840s
+Request 9: 0.008625s
+Request 10: 0.008907s
+
+--- Endpoint: GET /owners/1 (owner detail con pets+visits) ---
+Request 1: 0.029792s
+Request 2: 0.010218s
+Request 3: 0.009909s
+Request 4: 0.009353s
+Request 5: 0.008935s
+Request 6: 0.009749s
+Request 7: 0.008754s
+Request 8: 0.009013s
+Request 9: 0.010443s
+Request 10: 0.008505s
+
+--- Endpoint: GET /vets.html (lista de vets paginada) ---
+Request 1: 0.024385s
+Request 2: 0.005708s
+Request 3: 0.005497s
+Request 4: 0.004660s
+Request 5: 0.004580s
+Request 6: 0.005092s
+Request 7: 0.004760s
+Request 8: 0.004658s
+Request 9: 0.004824s
+Request 10: 0.004701s
+
+--- Endpoint: GET /vets (JSON) ---
+Request 1: 0.034481s
+Request 2: 0.002580s
+Request 3: 0.001807s
+Request 4: 0.001889s
+Request 5: 0.002214s
+Request 6: 0.002033s
+Request 7: 0.001755s
+Request 8: 0.001719s
+Request 9: 0.001785s
+Request 10: 0.001616s
